@@ -1,4 +1,4 @@
-# Student template
+# Teemu & Tuukka
 
 ## Purpose of this repository
 
