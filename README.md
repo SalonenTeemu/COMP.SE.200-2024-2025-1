@@ -1,3 +1,6 @@
+[![Node.js CI](https://github.com/SalonenTeemu/COMP.SE.200-2024-2025-1/actions/workflows/node.js.yml/badge.svg)](https://github.com/SalonenTeemu/COMP.SE.200-2024-2025-1/actions/workflows/node.js.yml)
+[![Coverage Status](https://coveralls.io/repos/github/SalonenTeemu/COMP.SE.200-2024-2025-1/badge.svg?branch=main)](https://coveralls.io/github/SalonenTeemu/COMP.SE.200-2024-2025-1?branch=main)
+
 # Teemu & Tuukka
 
 ## Purpose of this repository
