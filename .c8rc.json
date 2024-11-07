@@ -1,0 +1,15 @@
+{
+  "include": [
+    "src/add.js",
+    "src/capitalize.js",
+    "src/ceil.js",
+    "src/clamp.js",
+    "src/filter.js",
+    "src/isArrayLikeObject.js",
+    "src/eq.js",
+    "src/isEmpty.js",
+    "src/reduce.js",
+    "src/toNumber.js"
+  ],
+  "exclude": ["*/.test.js", "src/.internal/*.js"]
+}
