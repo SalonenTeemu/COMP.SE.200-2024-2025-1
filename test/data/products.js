@@ -1,0 +1,42 @@
+export default [
+  {
+    id: 1,
+    name: "Apple Juice",
+    category: "Beverage",
+    price: 5,
+    producer: "Producer A",
+    contents: "Apple, Sugar, Water",
+  },
+  {
+    id: 2,
+    name: "Banana",
+    category: "Fruit",
+    price: 2,
+    producer: "Producer B",
+    contents: "Banana",
+  },
+  {
+    id: 3,
+    name: "Carrot Soup",
+    category: "Soup",
+    price: 7,
+    producer: "Producer A",
+    contents: "Carrot, Salt, Water",
+  },
+  {
+    id: 4,
+    name: "Organic Apple",
+    category: "Fruit",
+    price: 12,
+    producer: "Producer C",
+    contents: "Apple",
+  },
+  {
+    id: 5,
+    name: "Apple Pie",
+    category: "Dessert",
+    price: 15,
+    producer: "Producer A",
+    contents: "Apple, Flour, Sugar, Butter",
+  },
+];
