@@ -5,6 +5,7 @@
 
 ## Running the tests and generating coverage report
 
+First run `npm install` to install the necessary dependencies.
 All of the scripts must be run in the project root directory.
 
 - The unit tests can be run from the command line using the command: `npm test`. 
