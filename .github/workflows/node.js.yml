@@ -17,11 +17,7 @@ jobs:
     - name: Install dependencies
       run: npm ci
     
-    - name: Run tests
-      run: npm test
-      continue-on-error: true
-    
-    - name: Run coverage
+    - name: Run tests & coverage
       run: npm run coverage
       continue-on-error: true
     
