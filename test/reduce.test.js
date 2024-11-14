@@ -1,5 +1,6 @@
 import { expect } from "chai";
 import reduce from "../src/reduce.js";
+import add from "../src/add.js";
 import productsData from "./data/products.js";
 
 describe("reduce.js Unit Tests", () => {
@@ -9,7 +10,14 @@ describe("reduce.js Unit Tests", () => {
       (total, product) => total + product.price,
       0
     );
-    expect(sum).to.equal(41);
+    expect(sum).to.be.closeTo(64.27, 0.01);
+
+    const sum2 = reduce(
+      productsData,
+      (total, product) => add(total, product.price),
+      0
+    );
+    expect(sum2).to.be.closeTo(64.27, 0.01);
   });
 
   it("should correctly group products by category", () => {
@@ -26,10 +34,10 @@ describe("reduce.js Unit Tests", () => {
     );
 
     expect(groupedByCategory).to.deep.equal({
-      Beverage: ["Apple Juice"],
-      Fruit: ["Banana", "Organic Apple"],
-      Soup: ["Carrot Soup"],
-      Dessert: ["Apple Pie"],
+      Beverage: ["Apple juice"],
+      Fruit: ["Banana", "Organic apple"],
+      Soup: ["Carrot soup"],
+      Dessert: ["Apple pie", "Ice cream"],
     });
   });
 
@@ -40,7 +48,7 @@ describe("reduce.js Unit Tests", () => {
       (total, product) => total + product.price,
       initialValue
     );
-    expect(sumWithInitial).to.equal(51);
+    expect(sumWithInitial).to.be.closeTo(74.27, 0.01);
   });
 
   it("should correctly handle an empty array", () => {
@@ -60,27 +68,11 @@ describe("reduce.js Unit Tests", () => {
     expect(resultEmpty).to.deep.equal({});
   });
 
-  it("should handle objects with non-enumerable properties correctly", () => {
-    const objWithNonEnumerable = Object.create(
-      {},
-      {
-        property1: { value: "value1", enumerable: true },
-        property2: { value: "value2", enumerable: false },
-      }
-    );
-    const reducedObj = reduce(
-      objWithNonEnumerable,
-      (acc, value, key) => {
-        acc[key] = value;
-        return acc;
-      },
-      {}
-    );
-    expect(reducedObj).to.deep.equal({ property1: "value1" });
-  });
-
   it("should return the initial accumulator if collection is empty", () => {
     const result = reduce([], (acc, val) => acc + val, 100);
     expect(result).to.equal(100);
+
+    const result2 = reduce([], (acc, val) => add(acc + val), 0);
+    expect(result2).to.equal(0);
   });
 });

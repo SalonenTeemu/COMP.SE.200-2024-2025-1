@@ -17,7 +17,7 @@ describe("toNumber.js Unit Tests", () => {
     );
   });
 
-  it("should convert an price object to a number", () => {
+  it("should convert a price object to a number", () => {
     const productObject = {
       valueOf: () => productsData[2].price,
     };
@@ -26,8 +26,12 @@ describe("toNumber.js Unit Tests", () => {
   });
 
   it("should convert boolean values to numbers", () => {
-    expect(toNumber(productsData[3].contents.includes("Apple"))).to.equal(1);
-    expect(toNumber(productsData[3].contents.includes("Rye"))).to.equal(0);
+    expect(
+      toNumber(productsData[3].contents.toLowerCase().includes("apple"))
+    ).to.equal(1);
+    expect(
+      toNumber(productsData[3].contents.toLowerCase().includes("rye"))
+    ).to.equal(0);
   });
 
   it("should convert an empty string to 0", () => {
@@ -36,5 +40,44 @@ describe("toNumber.js Unit Tests", () => {
 
   it("should trim whitespace from strings before converting", () => {
     expect(toNumber("  7 ")).to.equal(7);
+  });
+
+  it("should convert binary strings to numbers", () => {
+    expect(toNumber("0b101")).to.equal(5);
+    expect(toNumber("0b1101")).to.equal(13);
+  });
+
+  it("should convert octal strings to numbers", () => {
+    expect(toNumber("0o10")).to.equal(8);
+    expect(toNumber("0o77")).to.equal(63);
+  });
+
+  it("should convert hexadecimal strings to numbers", () => {
+    expect(toNumber("0x1f")).to.equal(31);
+    expect(toNumber("0xFF")).to.equal(255);
+  });
+
+  it("should return NaN for invalid hexadecimal strings", () => {
+    expect(toNumber("0xG")).to.be.NaN;
+  });
+
+  it("should convert Infinity to a number", () => {
+    expect(toNumber(Infinity)).to.equal(Infinity);
+  });
+
+  it("should convert -Infinity to a number", () => {
+    expect(toNumber(-Infinity)).to.equal(-Infinity);
+  });
+
+  it("should convert null to 0", () => {
+    expect(toNumber(null)).to.equal(0);
+  });
+
+  it("should convert undefined to NaN", () => {
+    expect(toNumber(undefined)).to.be.NaN;
+  });
+
+  it("should convert symbols to NaN", () => {
+    expect(toNumber(Symbol("symbol"))).to.be.NaN;
   });
 });

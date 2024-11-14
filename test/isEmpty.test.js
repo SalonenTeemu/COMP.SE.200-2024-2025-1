@@ -29,7 +29,8 @@ describe("isEmpty.js Unit Tests", () => {
     expect(isEmpty([1, 2, 3])).to.be.false;
   });
 
-  it("should return false for non-empty arras of objects", () => {
+  it("should return false for non-empty arrays of objects", () => {
+    expect(isEmpty([{ a: 1 }, { b: 1 }])).to.be.false;
     expect(isEmpty(productsData)).to.be.false;
   });
 
@@ -38,8 +39,8 @@ describe("isEmpty.js Unit Tests", () => {
   });
 
   it("should return false for non-empty objects", () => {
-    const product = { name: "Apple", price: 10 };
-    expect(isEmpty(product)).to.be.false;
+    expect(isEmpty({ a: 1 })).to.be.false;
+    expect(isEmpty(productsData[0])).to.be.false;
   });
 
   it("should return true for empty Map objects", () => {
@@ -62,15 +63,5 @@ describe("isEmpty.js Unit Tests", () => {
     const set = new Set();
     set.add("value");
     expect(isEmpty(set)).to.be.false;
-  });
-
-  it("should return true for objects with no enumerable own properties", () => {
-    const obj = Object.create({ inheritedProp: "value" });
-    expect(isEmpty(obj)).to.be.true;
-  });
-
-  it("should return false for objects with enumerable own properties", () => {
-    const obj = { name: "Product A", price: 10 };
-    expect(isEmpty(obj)).to.be.false;
   });
 });

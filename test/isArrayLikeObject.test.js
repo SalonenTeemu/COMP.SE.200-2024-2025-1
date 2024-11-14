@@ -4,43 +4,55 @@ import productsData from "./data/products.js";
 
 describe("isArrayLikeObject.js Unit Tests", () => {
   it("should return true for an array of numbers", () => {
-    const value = [1, 2, 3];
-    expect(isArrayLikeObject(value)).to.equal(true);
+    expect(isArrayLikeObject([1, 2, 3])).to.be.true;
   });
 
-  it("should return true for an array of objects", () => {
-    expect(isArrayLikeObject(productsData)).to.equal(true);
+  it("should return true for an array of product objects", () => {
+    expect(isArrayLikeObject(productsData)).to.be.true;
   });
 
   it("should return false for a string", () => {
-    const value = "abc";
-    expect(isArrayLikeObject(value)).to.equal(false);
+    expect(isArrayLikeObject("abc")).to.be.false;
   });
 
   it("should return false for a function", () => {
-    const value = function () {};
-    expect(isArrayLikeObject(value)).to.equal(false);
+    const fun = function () {};
+    expect(isArrayLikeObject(fun)).to.be.false;
   });
 
   it("should return false for a plain object", () => {
     const value = { a: 1, b: 2 };
-    expect(isArrayLikeObject(value)).to.equal(false);
+    expect(isArrayLikeObject(value)).to.be.false;
+  });
+
+  it("should return true for document.body.children", () => {
+    const document = {
+      body: {
+        children: {
+          0: { tagName: "DIV" },
+          1: { tagName: "SPAN" },
+          length: 2,
+          item(index) {
+            return this[index];
+          },
+        },
+      },
+    };
+    expect(isArrayLikeObject(document.body.children)).to.be.true;
   });
 
   it("should return true for an arguments object", () => {
     function test() {
       return isArrayLikeObject(arguments);
     }
-    expect(test(1, 2, 3)).to.equal(true);
+    expect(test(1, 2, 3)).to.be.true;
   });
 
   it("should return false for null", () => {
-    const value = null;
-    expect(isArrayLikeObject(value)).to.equal(false);
+    expect(isArrayLikeObject(null)).to.be.false;
   });
 
   it("should return false for undefined", () => {
-    const value = undefined;
-    expect(isArrayLikeObject(value)).to.equal(false);
+    expect(isArrayLikeObject(undefined)).to.be.false;
   });
 });
