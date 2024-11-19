@@ -28,7 +28,7 @@ describe("toNumber.js Unit Tests", () => {
   });
 
   it("should convert boolean values to numbers", () => {
-    expect(true).to.equal(1);
+    expect(toNumber(true)).to.equal(1);
     expect(toNumber(false)).to.equal(0);
 
     expect(

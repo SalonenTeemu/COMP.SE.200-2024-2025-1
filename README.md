@@ -11,7 +11,7 @@ All of the scripts must be run in the project root directory.
 - The unit tests can be run from the command line using the command: `npm test`. 
 - The test coverage report can be generated using the command: `npm run coverage`. 
 - The script `npm run open-coverage-html` can be run to open the generated report in html form to view in a browser. 
-- The script `npm run cover-age:html` generates the coverage report and opens it in html form in a browser.
+- The script `npm run coverage:html` generates the coverage report and opens it in html form in a browser.
 
 ## Purpose of this repository
 
