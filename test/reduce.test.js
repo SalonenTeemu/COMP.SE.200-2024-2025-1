@@ -4,6 +4,7 @@ import add from "../src/add.js";
 import productsData from "./data/products.js";
 
 describe("reduce.js Unit Tests", () => {
+  // Test basic product price summing with product objects from products.js:
   it("should correctly sum the prices of all products", () => {
     const sum = reduce(
       productsData,
@@ -12,6 +13,7 @@ describe("reduce.js Unit Tests", () => {
     );
     expect(sum).to.be.closeTo(64.27, 0.01);
 
+    // Test with the add() function:
     const sum2 = reduce(
       productsData,
       (total, product) => add(total, product.price),
@@ -20,6 +22,7 @@ describe("reduce.js Unit Tests", () => {
     expect(sum2).to.be.closeTo(64.27, 0.01);
   });
 
+  // Test basic product grouping with product objects from products.js:
   it("should correctly group products by category", () => {
     const groupedByCategory = reduce(
       productsData,
@@ -72,6 +75,7 @@ describe("reduce.js Unit Tests", () => {
     const result = reduce([], (acc, val) => acc + val, 100);
     expect(result).to.equal(100);
 
+    // Test with the add() function:
     const result2 = reduce([], (acc, val) => add(acc + val), 0);
     expect(result2).to.equal(0);
   });

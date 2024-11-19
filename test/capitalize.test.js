@@ -3,6 +3,8 @@ import capitalize from "../src/capitalize.js";
 import productsData from "./data/products.js";
 
 describe("capitalize.js Unit Tests", () => {
+  // Test basic string capitalization:
+
   it("should capitalize the first letter and lowercase the rest", () => {
     expect(capitalize("FRED")).to.equal("Fred");
   });
@@ -35,7 +37,8 @@ describe("capitalize.js Unit Tests", () => {
     expect(capitalize("@hello")).to.equal("@hello");
   });
 
-  it("should capitalize the first letter of product property and lowercase the rest", () => {
+  // Test product property capitalization with product objects from products.js:
+  it("should capitalize the first letter of a product property and lowercase the rest", () => {
     expect(capitalize(productsData[0].name)).to.equal("Apple juice");
     expect(capitalize(productsData[0].category))
       .to.equal(productsData[0].category)

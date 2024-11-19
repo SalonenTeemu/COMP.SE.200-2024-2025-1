@@ -3,6 +3,8 @@ import eq from "../src/eq.js";
 import productsData from "./data/products.js";
 
 describe("eq.js Unit Tests", () => {
+  // Test basic equality checks:
+
   it("should return true for same values", () => {
     expect(eq(5, 5)).to.be.true;
   });
@@ -17,7 +19,7 @@ describe("eq.js Unit Tests", () => {
     expect(eq(obj1, obj2)).to.be.false;
   });
 
-  // This test fails and is skipped due to possible error in the eq.js implementation or incorrect documentation
+  // This test is failing and skipped due to possible error in the eq.js implementation or incorrect documentation:
   it.skip("should return false when comparing a string to an object wrapping a string", () => {
     const value1 = "a";
     const value2 = Object("a");
@@ -48,11 +50,13 @@ describe("eq.js Unit Tests", () => {
     expect(eq(undefined, undefined)).to.be.true;
   });
 
-  it("should return false for comparing a value with null", () => {
+  it("should return false when comparing a value with null", () => {
     expect(eq(5, null)).to.be.false;
   });
 
-  it("should return true for comparing same products and their properties", () => {
+  // Test product object equality with product objects from products.js:
+  
+  it("should return true when comparing same product object and its properties", () => {
     expect(eq(productsData, productsData)).to.be.true;
     expect(eq(productsData[0], productsData[0])).to.be.true;
     expect(eq(productsData[0].id, productsData[0].id)).to.be.true;
@@ -60,7 +64,7 @@ describe("eq.js Unit Tests", () => {
     expect(eq(productsData[0].price, productsData[0].price)).to.be.true;
   });
 
-  it("should return false for comparing different products and their properties", () => {
+  it("should return false when comparing different product objects and their properties", () => {
     expect(eq(productsData[0], productsData[1])).to.be.false;
     expect(eq(productsData[0].id, productsData[1].id)).to.be.false;
     expect(eq(productsData[0].producer, productsData[1].producer)).to.be.false;

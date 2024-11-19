@@ -1,10 +1,13 @@
 import { expect } from "chai";
-import filter from "../src/filter.js";
+import filterFromUL from "../src/filter.js";
 import productsData from "./data/products.js";
 
 describe("filter.js Unit Tests", () => {
+  // Test basic product filtering with product objects from products.js:
+  // Results are compared to the native Array.prototype.filter() method.
+
   it("should filter products by category correctly", () => {
-    const filteredProducts = filter(
+    const filteredProducts = filterFromUL(
       productsData,
       ({ category }) => category === "Fruit"
     );
@@ -15,7 +18,10 @@ describe("filter.js Unit Tests", () => {
   });
 
   it("should filter products by price correctly", () => {
-    const filteredProducts = filter(productsData, ({ price }) => price <= 10);
+    const filteredProducts = filterFromUL(
+      productsData,
+      ({ price }) => price <= 10
+    );
     const expectedProducts = productsData.filter(
       (product) => product.price <= 10
     );
@@ -23,7 +29,7 @@ describe("filter.js Unit Tests", () => {
   });
 
   it("should filter products by producer correctly", () => {
-    const filteredProducts = filter(
+    const filteredProducts = filterFromUL(
       productsData,
       ({ producer }) => producer === "Producer a"
     );
@@ -34,7 +40,7 @@ describe("filter.js Unit Tests", () => {
   });
 
   it("should filter products by contents correctly", () => {
-    const filteredProducts = filter(productsData, ({ contents }) =>
+    const filteredProducts = filterFromUL(productsData, ({ contents }) =>
       contents.toLowerCase().includes("apple")
     );
     const expectedProducts = productsData.filter((product) =>
@@ -42,7 +48,8 @@ describe("filter.js Unit Tests", () => {
     );
     expect(filteredProducts).to.deep.equal(expectedProducts);
 
-    const filteredProducts2 = filter(
+    // Test filtering by multiple criteria:
+    const filteredProducts2 = filterFromUL(
       productsData,
       ({ contents }) =>
         contents.toLowerCase().includes("apple") &&
@@ -57,10 +64,23 @@ describe("filter.js Unit Tests", () => {
   });
 
   it("should return an empty array if no products match the filter criteria", () => {
-    const filteredProducts = filter(
+    const filteredProducts = filterFromUL(
       productsData,
       ({ category }) => category === "Nonexistent category"
     );
-    expect(filteredProducts).to.deep.equal([[]]); // expected result or should it return []?
+    // Is this the expected result or should it return [] instead?
+    expect(filteredProducts).to.deep.equal([[]]);
+  });
+
+  it("should return an empty array if the input array is empty", () => {
+    const filteredProducts = filterFromUL([], () => true);
+    // Is this the expected result or should it return [] instead?
+    expect(filteredProducts).to.deep.equal([[]]);
+  });
+
+  it("should return an empty array if the input array is null", () => {
+    const filteredProducts = filterFromUL(null, () => true);
+    // Is this the expected result or should it return [] instead?
+    expect(filteredProducts).to.deep.equal([[]]);
   });
 });

@@ -3,6 +3,8 @@ import isEmpty from "../src/isEmpty.js";
 import productsData from "./data/products.js";
 
 describe("isEmpty.js Unit Tests", () => {
+  // Test basic empty value checks:
+
   it("should return true for null", () => {
     expect(isEmpty(null)).to.be.true;
   });
